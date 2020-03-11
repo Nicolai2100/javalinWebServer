@@ -18,7 +18,12 @@ dependencies {
     // REST-server: Javalin
     compile 'io.javalin:javalin:3.7.0'
     compile "org.slf4j:slf4j-simple:1.7.28" // Nødvendig til javalin
+
+    //JSON Simpel parser
+    compile group: 'org.json', name: 'json', version: '20180813'
+
     // JSON-parser Jackson
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.1'
+
 
 }
