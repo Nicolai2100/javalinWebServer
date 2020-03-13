@@ -18,30 +18,31 @@ public class GalgelegResource {
     @Path("/{brugernavn}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)*/
-  /*  public String startGalgeleg(@PathParam("brugernavn") String brugernavn) {
+    public static String startGame(String username) {
+        String spilStatus = null;
         try {
             System.out.println("Forbinder til " + IGalgelegRMI.URL);
             server = (IGalgelegRMI) Naming.lookup(IGalgelegRMI.URL);
             System.out.println("Forbundet til serveren");
-            String spilStatus = server.startSpil(brugernavn);
-            return Response.ok().entity(spilStatus).build();
+            spilStatus = server.startSpil(username);
         } catch (NotBoundException | MalformedURLException | RemoteException e) {
-            return Response.status(404).build();
+            e.printStackTrace();
         }
+        return spilStatus;
     }
-*/
  /*   @GET
     @Path("/{brugernavn}/{bogstav}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response gaetPaaBogstav(@PathParam("brugernavn") String brugernavn, @PathParam("bogstav") String bogstav) {
+    */
+
+    public static String makeGuess(String username, String guess) {
+        String spilStatus = null;
         try {
-            String spilStatus = server.gaetBogstav(bogstav.charAt(0), brugernavn);
-            return Response.ok().entity(spilStatus).build();
+            spilStatus = server.gaetBogstav(guess.charAt(0), username);
         } catch (IOException | IllegalArgumentException e) {
-            return Response.status(404).entity("Key: bogstav findes ikke").build();
         }
+        return spilStatus;
     }
-*/
 
     public static List<String> getHighscoreListe() {
         List<String> highscore = null;

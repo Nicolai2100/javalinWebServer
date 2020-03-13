@@ -20,8 +20,6 @@ public class Main {
     public static void start() throws Exception {
         if (app != null) return;
 
-        //  path = 'http://localhost:8080/rest/';
-
         app = Javalin.create().start(8080);
         app.before(ctx -> {
             System.out.println("Javalin Server fik " + ctx.method() + " på " + ctx.url() + " med query " + ctx.queryParamMap() + " og form " + ctx.formParamMap());
@@ -45,7 +43,10 @@ public class Main {
                 ctx.json(UserLogin.verificerLogin(ctx.body())).contentType("json"));
         app.get("rest/galgeleg/highscore", ctx ->
                 ctx.json(GalgelegResource.getHighscoreListe()).contentType("json"));
-
+        app.post("rest/galgeleg/:username", ctx ->
+                ctx.result(GalgelegResource.startGame(ctx.pathParam("username"))).contentType("json"));
+        app.get("rest/galgeleg/:username/:guess", ctx ->
+                ctx.result(GalgelegResource.makeGuess(ctx.pathParam("username"), ctx.pathParam("guess"))).contentType("json"));
 
     }
 
