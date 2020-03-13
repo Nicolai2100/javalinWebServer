@@ -1,3 +1,5 @@
+package resources;
+
 import brugerautorisation.data.Bruger;
 import brugerautorisation.transport.rmi.Brugeradmin;
 import com.fasterxml.jackson.core.JsonProcessingException;

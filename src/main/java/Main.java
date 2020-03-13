@@ -1,12 +1,8 @@
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import org.eclipse.jetty.server.Authentication;
-
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
+import resources.GalgelegResource;
+import resources.UserLogin;
 
 public class Main {
     public static Javalin app;
@@ -47,10 +43,9 @@ public class Main {
         //app.post("/rest/sendGlemtAdgangskodeEmail", ctx -> sendGlemtAdgangskodeEmail(ctx));
         app.post("rest/brugerLogin", ctx ->
                 ctx.json(UserLogin.verificerLogin(ctx.body())).contentType("json"));
-  /*      app.post("rest/brugerLogin", ctx ->
-                ctx.json(UserLogin.verificerLogin(ctx.body())).contentType("json"));
+        app.get("rest/galgeleg/highscore", ctx ->
+                ctx.json(GalgelegResource.getHighscoreListe()).contentType("json"));
 
-*/
 
     }
 
@@ -89,4 +84,4 @@ public class Main {
         ctx.result("Der blev sendt en mail til " + brugernavn + " med teksten " + følgetekst);
     }*/
 
-    }
+}

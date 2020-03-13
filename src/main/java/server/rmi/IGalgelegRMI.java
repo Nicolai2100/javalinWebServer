@@ -13,7 +13,7 @@ public interface IGalgelegRMI extends java.rmi.Remote {
     int PORT = 1099;
     String PATH = "galgeleg";
     String DOMAIN = "ec2-13-48-132-112.eu-north-1.compute.amazonaws.com";
-    String URL = String.format("server.rmi://%s:%d/%s", DOMAIN, PORT, PATH);
+    String URL = String.format("rmi://%s:%d/%s", DOMAIN, PORT, PATH);
 
     String gaetBogstav(char bogstav, String brugernavn) throws RemoteException, IOException;
 
